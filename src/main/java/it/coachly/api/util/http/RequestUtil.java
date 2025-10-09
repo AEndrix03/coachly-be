@@ -1,4 +1,4 @@
-package it.coachly.api.util;
+package it.coachly.api.util.http;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
