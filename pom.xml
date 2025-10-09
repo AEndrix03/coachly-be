@@ -21,6 +21,7 @@
 		<java.version>21</java.version>
 		<spring-cloud.version>2024.0.1</spring-cloud.version>
 		<querydsl.version>5.1.0</querydsl.version>
+		<lombok.version>1.18.34</lombok.version>
 	</properties>
 
 	<dependencyManagement>
@@ -99,6 +100,7 @@
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
 			<version>${querydsl.version}</version>
+			<classifier>jakarta</classifier>
 		</dependency>
 
 		<!-- QueryDSL APT Processor -->
@@ -106,6 +108,7 @@
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-apt</artifactId>
 			<version>${querydsl.version}</version>
+			<classifier>jakarta</classifier>
 			<scope>provided</scope>
 		</dependency>
 
@@ -135,6 +138,18 @@
 			<artifactId>java-jwt</artifactId>
 			<version>4.4.0</version>
 		</dependency>
+
+		<!-- Other dependencies -->
+		<dependency>
+			<groupId>com.squareup</groupId>
+			<artifactId>javapoet</artifactId>
+			<version>1.13.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.10.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -151,16 +166,27 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
 						</path>
 						<path>
 							<groupId>com.querydsl</groupId>
 							<artifactId>querydsl-apt</artifactId>
 							<version>${querydsl.version}</version>
+							<classifier>jakarta</classifier>
+						</path>
+						<path>
+							<groupId>jakarta.persistence</groupId>
+							<artifactId>jakarta.persistence-api</artifactId>
+							<version>3.1.0</version>
+						</path>
+						<path>
+							<groupId>jakarta.annotation</groupId>
+							<artifactId>jakarta.annotation-api</artifactId>
+							<version>2.1.1</version>
 						</path>
 					</annotationProcessorPaths>
 					<compilerArgs>
 						<!-- Genera Q-model per JPA -->
-						<arg>-proc:only</arg>
 						<arg>-processor</arg>
 						<arg>com.querydsl.apt.jpa.JPAAnnotationProcessor</arg>
 					</compilerArgs>
@@ -197,4 +223,35 @@
 		</resources>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>gen-repos</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>3.1.0</version>
+						<executions>
+							<execution>
+								<id>generate-repositories</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>java</goal>
+								</goals>
+								<configuration>
+									<mainClass>it.coachly.api.config.generator.RepositoryGenerator</mainClass>
+									<arguments>
+										<argument>it.coachly.api.model</argument>
+										<argument>it.coachly.api.repository</argument>
+									</arguments>
+									<classpathScope>compile</classpathScope>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
