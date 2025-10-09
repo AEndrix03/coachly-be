@@ -1,4 +1,4 @@
-package it.coachly.api.config;
+package it.coachly.api.config.audit;
 
 import org.hibernate.event.spi.PreInsertEvent;
 import org.hibernate.event.spi.PreInsertEventListener;
