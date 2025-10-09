@@ -6,10 +6,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -38,6 +41,12 @@ public class ExerciseInstruction {
     @Column(name = "step_number", nullable = false)
     private Integer stepNumber;
 
+    // Campo tradotto JSONB
+    @NotNull
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "instruction_text_i18n", nullable = false, columnDefinition = "jsonb")
+    private Map<String, String> instructionTextI18n;
+
     @ColumnDefault("false")
     @Column(name = "is_critical")
     private Boolean isCritical;
@@ -45,5 +54,4 @@ public class ExerciseInstruction {
     @ColumnDefault("now()")
     @Column(name = "created_at")
     private Instant createdAt;
-
 }

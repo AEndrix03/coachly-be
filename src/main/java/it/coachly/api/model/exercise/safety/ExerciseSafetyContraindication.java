@@ -7,10 +7,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -40,8 +43,12 @@ public class ExerciseSafetyContraindication {
     @Column(name = "condition_name", nullable = false, length = 100)
     private String conditionName;
 
+    // Campo tradotto JSONB
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "warning_text_i18n", columnDefinition = "jsonb")
+    private Map<String, String> warningTextI18n;
+
     @ColumnDefault("now()")
     @Column(name = "created_at")
     private Instant createdAt;
-
 }

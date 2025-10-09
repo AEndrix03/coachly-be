@@ -6,8 +6,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -26,6 +29,16 @@ public class Equipment {
     @Column(name = "code", nullable = false, length = 150)
     private String code;
 
+    // Campi tradotti JSONB
+    @NotNull
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "name_i18n", nullable = false, columnDefinition = "jsonb")
+    private Map<String, String> nameI18n;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "description_i18n", columnDefinition = "jsonb")
+    private Map<String, String> descriptionI18n;
+
     @Size(max = 50)
     @NotNull
     @Column(name = "category", nullable = false, length = 50)
@@ -42,5 +55,4 @@ public class Equipment {
     @ColumnDefault("now()")
     @Column(name = "created_at")
     private Instant createdAt;
-
 }

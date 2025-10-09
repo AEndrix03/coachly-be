@@ -7,10 +7,13 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -38,8 +41,12 @@ public class ExerciseSafety {
     @Column(name = "spotter_required")
     private Boolean spotterRequired;
 
+    // Campo tradotto JSONB
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "safety_notes_i18n", columnDefinition = "jsonb")
+    private Map<String, String> safetyNotesI18n;
+
     @ColumnDefault("now()")
     @Column(name = "created_at")
     private Instant createdAt;
-
 }
