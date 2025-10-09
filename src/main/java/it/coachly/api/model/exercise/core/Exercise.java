@@ -1,0 +1,70 @@
+package it.coachly.api.model.exercise.core;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+
+import java.time.Instant;
+import java.util.UUID;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "exercises")
+public class Exercise {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @ColumnDefault("gen_random_uuid()")
+    @Column(name = "id", nullable = false)
+    private UUID id;
+
+    @Size(max = 150)
+    @NotNull
+    @Column(name = "code", nullable = false, length = 150)
+    private String code;
+
+    @Size(max = 20)
+    @NotNull
+    @Column(name = "difficulty_level", nullable = false, length = 20)
+    private String difficultyLevel;
+
+    @Size(max = 20)
+    @NotNull
+    @Column(name = "mechanics_type", nullable = false, length = 20)
+    private String mechanicsType;
+
+    @Size(max = 20)
+    @Column(name = "force_type", length = 20)
+    private String forceType;
+
+    @ColumnDefault("false")
+    @Column(name = "is_unilateral")
+    private Boolean isUnilateral;
+
+    @ColumnDefault("false")
+    @Column(name = "is_bodyweight")
+    private Boolean isBodyweight;
+
+    @ColumnDefault("false")
+    @Column(name = "is_custom")
+    private Boolean isCustom;
+
+    @Column(name = "created_by")
+    private UUID createdBy;
+
+    @ColumnDefault("true")
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @ColumnDefault("now()")
+    @Column(name = "created_at")
+    private Instant createdAt;
+
+    @ColumnDefault("now()")
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+}
