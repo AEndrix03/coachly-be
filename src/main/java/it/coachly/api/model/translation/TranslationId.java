@@ -1,11 +1,11 @@
 package it.coachly.api.model.translation;
 
+import it.coachly.api.enums.translation.LocaleEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
@@ -14,7 +14,10 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Builder
 @Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
 public class TranslationId implements Serializable {
     private static final long serialVersionUID = 1676765471526440821L;
     @Size(max = 50)
@@ -29,7 +32,7 @@ public class TranslationId implements Serializable {
     @Size(max = 10)
     @NotNull
     @Column(name = "locale", nullable = false, length = 10)
-    private String locale;
+    private LocaleEnum locale;
 
     @Size(max = 100)
     @NotNull
