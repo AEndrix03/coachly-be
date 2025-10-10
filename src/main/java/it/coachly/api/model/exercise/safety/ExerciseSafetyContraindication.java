@@ -1,5 +1,6 @@
 package it.coachly.api.model.exercise.safety;
 
+import it.coachly.api.enums.safety.ContraindicationTypeEnum;
 import it.coachly.api.model.exercise.core.Exercise;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -36,7 +37,7 @@ public class ExerciseSafetyContraindication {
     @Size(max = 20)
     @NotNull
     @Column(name = "contraindication_type", nullable = false, length = 20)
-    private String contraindicationType;
+    private ContraindicationTypeEnum contraindicationType;
 
     @Size(max = 100)
     @NotNull

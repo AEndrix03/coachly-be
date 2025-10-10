@@ -1,5 +1,6 @@
 package it.coachly.api.model.exercise.safety;
 
+import it.coachly.api.enums.safety.RiskLevelEnum;
 import it.coachly.api.model.exercise.core.Exercise;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -35,7 +36,7 @@ public class ExerciseSafety {
     @Size(max = 20)
     @NotNull
     @Column(name = "overall_risk_level", nullable = false, length = 20)
-    private String overallRiskLevel;
+    private RiskLevelEnum overallRiskLevel;
 
     @ColumnDefault("false")
     @Column(name = "spotter_required")

@@ -1,5 +1,7 @@
 package it.coachly.api.model.equipment;
 
+import it.coachly.api.enums.equipment.EquipmentCategoryEnum;
+import it.coachly.api.enums.equipment.EquipmentTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -42,11 +44,11 @@ public class Equipment {
     @Size(max = 50)
     @NotNull
     @Column(name = "category", nullable = false, length = 50)
-    private String category;
+    private EquipmentCategoryEnum category;
 
     @Size(max = 50)
     @Column(name = "equipment_type", length = 50)
-    private String equipmentType;
+    private EquipmentTypeEnum equipmentType;
 
     @ColumnDefault("true")
     @Column(name = "is_active")

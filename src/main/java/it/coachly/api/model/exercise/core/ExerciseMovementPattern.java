@@ -1,5 +1,8 @@
 package it.coachly.api.model.exercise.core;
 
+import it.coachly.api.enums.exercise.MovementPatternEnum;
+import it.coachly.api.enums.exercise.MovementPlaneEnum;
+import it.coachly.api.enums.exercise.PowerGenerationLevelEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -29,15 +32,15 @@ public class ExerciseMovementPattern {
 
     @Size(max = 30)
     @Column(name = "movement_plane", length = 30)
-    private String movementPlane;
+    private MovementPlaneEnum movementPlane;
 
     @Size(max = 100)
     @Column(name = "movement_pattern", length = 100)
-    private String movementPattern;
+    private MovementPatternEnum movementPattern;
 
     @Size(max = 20)
     @Column(name = "power_generation_level", length = 20)
-    private String powerGenerationLevel;
+    private PowerGenerationLevelEnum powerGenerationLevel;
 
     @ColumnDefault("now()")
     @Column(name = "created_at")

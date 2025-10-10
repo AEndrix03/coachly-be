@@ -1,5 +1,6 @@
 package it.coachly.api.model.exercise.core;
 
+import it.coachly.api.enums.instruction.InstructionTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -35,7 +36,7 @@ public class ExerciseInstruction {
     @Size(max = 30)
     @NotNull
     @Column(name = "instruction_type", nullable = false, length = 30)
-    private String instructionType;
+    private InstructionTypeEnum instructionType;
 
     @NotNull
     @Column(name = "step_number", nullable = false)

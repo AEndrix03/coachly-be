@@ -1,5 +1,8 @@
 package it.coachly.api.model.exercise.core;
 
+import it.coachly.api.enums.DifficultyLevelEnum;
+import it.coachly.api.enums.exercise.ForceTypeEnum;
+import it.coachly.api.enums.exercise.MechanicsTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -46,16 +49,16 @@ public class Exercise {
     @Size(max = 20)
     @NotNull
     @Column(name = "difficulty_level", nullable = false, length = 20)
-    private String difficultyLevel;
+    private DifficultyLevelEnum difficultyLevel;
 
     @Size(max = 20)
     @NotNull
     @Column(name = "mechanics_type", nullable = false, length = 20)
-    private String mechanicsType;
+    private MechanicsTypeEnum mechanicsType;
 
     @Size(max = 20)
     @Column(name = "force_type", length = 20)
-    private String forceType;
+    private ForceTypeEnum forceType;
 
     @ColumnDefault("false")
     @Column(name = "is_unilateral")

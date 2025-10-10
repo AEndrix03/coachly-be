@@ -1,5 +1,6 @@
 package it.coachly.api.model.muscle.exercise;
 
+import it.coachly.api.enums.muscle.InvolvementLevelEnum;
 import it.coachly.api.model.exercise.core.Exercise;
 import it.coachly.api.model.muscle.ContractionType;
 import it.coachly.api.model.muscle.Muscle;
@@ -41,7 +42,7 @@ public class ExerciseMuscle {
     @Size(max = 30)
     @NotNull
     @Column(name = "involvement_level", nullable = false, length = 30)
-    private String involvementLevel;
+    private InvolvementLevelEnum involvementLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "primary_contraction_type_id")

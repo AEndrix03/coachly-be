@@ -1,5 +1,6 @@
 package it.coachly.api.model.exercise.core;
 
+import it.coachly.api.enums.exercise.VariationTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -38,7 +39,7 @@ public class ExerciseVariation {
     @Size(max = 50)
     @NotNull
     @Column(name = "variation_type", nullable = false, length = 50)
-    private String variationType;
+    private VariationTypeEnum variationType;
 
     @Column(name = "difficulty_delta")
     private Integer difficultyDelta;

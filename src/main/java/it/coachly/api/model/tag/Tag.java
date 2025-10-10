@@ -1,5 +1,6 @@
 package it.coachly.api.model.tag;
 
+import it.coachly.api.enums.tag.TagTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -41,7 +42,7 @@ public class Tag {
 
     @Size(max = 50)
     @Column(name = "tag_type", length = 50)
-    private String tagType;
+    private TagTypeEnum tagType;
 
     @ColumnDefault("true")
     @Column(name = "is_active")

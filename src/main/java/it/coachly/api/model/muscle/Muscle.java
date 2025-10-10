@@ -1,5 +1,7 @@
 package it.coachly.api.model.muscle;
 
+import it.coachly.api.enums.muscle.MuscleGroupEnum;
+import it.coachly.api.enums.muscle.MuscleSubgroupEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -42,11 +44,11 @@ public class Muscle {
     @Size(max = 50)
     @NotNull
     @Column(name = "muscle_group", nullable = false, length = 50)
-    private String muscleGroup;
+    private MuscleGroupEnum muscleGroup;
 
     @Size(max = 100)
     @Column(name = "muscle_subgroup", length = 100)
-    private String muscleSubgroup;
+    private MuscleSubgroupEnum muscleSubgroup;
 
     @Size(max = 255)
     @Column(name = "anatomical_name")

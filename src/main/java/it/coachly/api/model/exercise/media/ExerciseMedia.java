@@ -1,5 +1,8 @@
 package it.coachly.api.model.exercise.media;
 
+import it.coachly.api.enums.media.MediaPurposeEnum;
+import it.coachly.api.enums.media.MediaTypeEnum;
+import it.coachly.api.enums.media.ViewAngleEnum;
 import it.coachly.api.model.exercise.core.Exercise;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -33,7 +36,7 @@ public class ExerciseMedia {
     @Size(max = 30)
     @NotNull
     @Column(name = "media_type", nullable = false, length = 30)
-    private String mediaType;
+    private MediaTypeEnum mediaType;
 
     @Size(max = 500)
     @NotNull
@@ -47,11 +50,11 @@ public class ExerciseMedia {
     @Size(max = 50)
     @NotNull
     @Column(name = "media_purpose", nullable = false, length = 50)
-    private String mediaPurpose;
+    private MediaPurposeEnum mediaPurpose;
 
     @Size(max = 50)
     @Column(name = "view_angle", length = 50)
-    private String viewAngle;
+    private ViewAngleEnum viewAngle;
 
     @ColumnDefault("0")
     @Column(name = "display_order")
