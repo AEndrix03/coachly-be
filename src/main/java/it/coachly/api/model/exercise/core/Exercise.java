@@ -27,11 +27,6 @@ public class Exercise {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @Size(max = 150)
-    @NotNull
-    @Column(name = "code", nullable = false, length = 150)
-    private String code;
-
     // Campi tradotti JSONB
     @NotNull
     @JdbcTypeCode(SqlTypes.JSON)
