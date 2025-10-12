@@ -4,12 +4,14 @@ import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.model.exercise.category.QExerciseCategory;
 import it.coachly.api.model.exercise.category.QExerciseCategoryMapping;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @Data
+@SuperBuilder
 public class ExerciseCategoryDto {
 
     private UUID id;
