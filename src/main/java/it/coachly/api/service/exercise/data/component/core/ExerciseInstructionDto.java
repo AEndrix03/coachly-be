@@ -3,7 +3,6 @@ package it.coachly.api.service.exercise.data.component.core;
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.instruction.InstructionTypeEnum;
 import it.coachly.api.model.exercise.core.QExerciseInstruction;
-import it.coachly.api.service.exercise.data.core.QExerciseInstructionDto;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 

@@ -17,10 +17,10 @@ public class ExerciseVariantSaveDto extends ExerciseVariantDto {
     private final UUID baseExerciseId;
     private final UUID variantExerciseId;
 
-    public ExerciseVariantSaveDto(UUID id, Map<String, String> namei18n, Map<String, String> descriptioni18n, Map<String, String> tipsi18n, DifficultyLevelEnum difficultyLevel, MechanicsTypeEnum mechanicsType, ForceTypeEnum forceType, Boolean isUnilateral, Boolean isBodyweight, VariationTypeEnum variationType, UUID variantExerciseId, UUID baseExerciseId) {
-        super(id, namei18n, descriptioni18n, tipsi18n, difficultyLevel, mechanicsType, forceType, isUnilateral, isBodyweight, variationType);
-        this.variantExerciseId = variantExerciseId;
+    public ExerciseVariantSaveDto(UUID id, Map<String, String> namei18n, Map<String, String> descriptioni18n, Map<String, String> tipsi18n, DifficultyLevelEnum difficultyLevel, MechanicsTypeEnum mechanicsType, ForceTypeEnum forceType, Boolean isUnilateral, Boolean isBodyweight, VariationTypeEnum variationType, Integer difficultyDelta, UUID baseExerciseId, UUID variantExerciseId) {
+        super(id, namei18n, descriptioni18n, tipsi18n, difficultyLevel, mechanicsType, forceType, isUnilateral, isBodyweight, variationType, difficultyDelta);
         this.baseExerciseId = baseExerciseId;
+        this.variantExerciseId = variantExerciseId;
     }
 }
 

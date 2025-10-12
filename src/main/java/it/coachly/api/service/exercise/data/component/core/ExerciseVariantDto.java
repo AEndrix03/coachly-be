@@ -40,7 +40,7 @@ public class ExerciseVariantDto extends ExerciseDto {
                 qEV.variantExercise.isUnilateral,
                 qEV.variantExercise.isBodyweight,
                 qEV.variationType,
-                QEV.difficultyDelta
+                qEV.difficultyDelta
         );
     }
 }

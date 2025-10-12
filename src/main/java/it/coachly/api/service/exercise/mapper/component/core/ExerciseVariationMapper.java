@@ -14,7 +14,7 @@ public class ExerciseVariationMapper implements IEntityMapper<ExerciseVariantSav
                 .baseExerciseId(dto.getBaseExerciseId())
                 .variantExerciseId(dto.getVariantExerciseId())
                 .variationType(dto.getVariationType())
-                .difficultyDelta(dto.getDifficultyLevel())
+                .difficultyDelta(dto.getDifficultyDelta())
                 .build();
     }
 }
