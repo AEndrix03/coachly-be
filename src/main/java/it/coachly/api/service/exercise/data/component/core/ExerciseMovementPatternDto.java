@@ -5,15 +5,14 @@ import it.coachly.api.enums.exercise.MovementPatternEnum;
 import it.coachly.api.enums.exercise.MovementPlaneEnum;
 import it.coachly.api.enums.exercise.PowerGenerationLevelEnum;
 import it.coachly.api.model.exercise.core.QExerciseMovementPattern;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
 @Data
-@Builder
+@SuperBuilder
 public class ExerciseMovementPatternDto {
-
     private final UUID id;
     private final MovementPlaneEnum movementPlane;
     private final MovementPatternEnum movementPattern;

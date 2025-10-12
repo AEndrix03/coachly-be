@@ -22,7 +22,7 @@ public class ExerciseInstructionServiceImpl implements ExerciseInstructionServic
 
     @Override
     public UUID save(ExerciseInstructionSaveDto dto) {
-        var exercise = exerciseRepository.findById(dto.getExerciseId())
+        this.exerciseRepository.findById(dto.getExerciseId())
                 .orElseThrow(() -> new NotFoundException("Exercise not found"));
 
         return exerciseInstructionRepository.save(exerciseInstructionMapper.toEntity(dto)).getId();

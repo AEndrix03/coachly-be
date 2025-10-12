@@ -5,8 +5,7 @@ import it.coachly.api.enums.exercise.MovementPlaneEnum;
 import it.coachly.api.enums.exercise.PowerGenerationLevelEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -17,6 +16,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "exercise_movement_patterns")
 public class ExerciseMovementPattern {
     @Id
@@ -27,8 +29,11 @@ public class ExerciseMovementPattern {
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercises;
+
+    @Column(name = "exercise_id", nullable = false)
+    private UUID exerciseId;
 
     @Size(max = 30)
     @Column(name = "movement_plane", length = 30)

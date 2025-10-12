@@ -18,11 +18,13 @@ import java.util.UUID;
 public class ExerciseVariantDto extends ExerciseDto {
 
     private VariationTypeEnum variationType;
+    private Integer difficultyDelta;
 
     @QueryProjection
-    public ExerciseVariantDto(UUID id, Map<String, String> namei18n, Map<String, String> descriptioni18n, Map<String, String> tipsi18n, DifficultyLevelEnum difficultyLevel, MechanicsTypeEnum mechanicsType, ForceTypeEnum forceType, Boolean isUnilateral, Boolean isBodyweight, VariationTypeEnum variationType) {
+    public ExerciseVariantDto(UUID id, Map<String, String> namei18n, Map<String, String> descriptioni18n, Map<String, String> tipsi18n, DifficultyLevelEnum difficultyLevel, MechanicsTypeEnum mechanicsType, ForceTypeEnum forceType, Boolean isUnilateral, Boolean isBodyweight, VariationTypeEnum variationType, Integer difficultyDelta) {
         super(id, namei18n, descriptioni18n, tipsi18n, difficultyLevel, mechanicsType, forceType, isUnilateral, isBodyweight);
         this.variationType = variationType;
+        this.difficultyDelta = difficultyDelta;
     }
 
     public static QExerciseVariantDto getVariatProjection() {
@@ -37,7 +39,8 @@ public class ExerciseVariantDto extends ExerciseDto {
                 qEV.variantExercise.forceType,
                 qEV.variantExercise.isUnilateral,
                 qEV.variantExercise.isBodyweight,
-                qEV.variationType
+                qEV.variationType,
+                QEV.difficultyDelta
         );
     }
 }
