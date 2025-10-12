@@ -5,15 +5,15 @@ import it.coachly.api.enums.DifficultyLevelEnum;
 import it.coachly.api.enums.exercise.ForceTypeEnum;
 import it.coachly.api.enums.exercise.MechanicsTypeEnum;
 import it.coachly.api.model.exercise.core.QExercise;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
 import java.util.UUID;
 
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 public class ExerciseDto {
 
@@ -38,6 +38,18 @@ public class ExerciseDto {
         this.forceType = forceType;
         this.isUnilateral = isUnilateral;
         this.isBodyweight = isBodyweight;
+    }
+
+    public ExerciseDto(ExerciseDto other) {
+        this.id = other.id;
+        this.namei18n = other.namei18n;
+        this.descriptioni18n = other.descriptioni18n;
+        this.tipsi18n = other.tipsi18n;
+        this.difficultyLevel = other.difficultyLevel;
+        this.mechanicsType = other.mechanicsType;
+        this.forceType = other.forceType;
+        this.isUnilateral = other.isUnilateral;
+        this.isBodyweight = other.isBodyweight;
     }
 
     public static QExerciseDto getProjection() {
