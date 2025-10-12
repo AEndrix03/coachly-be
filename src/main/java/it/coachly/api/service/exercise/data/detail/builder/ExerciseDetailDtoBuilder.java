@@ -7,9 +7,12 @@ import it.coachly.api.service.exercise.data.core.ExerciseInstructionDto;
 import it.coachly.api.service.exercise.data.core.ExerciseMovementPatternDto;
 import it.coachly.api.service.exercise.data.core.ExerciseVariantDto;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
+import it.coachly.api.service.exercise.data.equipment.ExerciseEquipmentDto;
 import it.coachly.api.service.exercise.data.media.ExerciseMediaDto;
+import it.coachly.api.service.exercise.data.muscle.ExerciseMuscleDto;
 import it.coachly.api.service.exercise.data.safety.ExerciseSafetyContraindicationDto;
 import it.coachly.api.service.exercise.data.safety.ExerciseSafetyDto;
+import it.coachly.api.service.tag.data.TagDto;
 
 import java.util.List;
 
@@ -27,6 +30,10 @@ public class ExerciseDetailDtoBuilder {
 
     private List<ExerciseSafetyDto> safety;
     private List<ExerciseSafetyContraindicationDto> safetyContraindications;
+
+    private List<ExerciseMuscleDto> muscles;
+    private List<ExerciseEquipmentDto> equipments;
+    private List<TagDto> tags;
 
     public ExerciseDetailDtoBuilder withBaseExercise(ExerciseDto baseExercise) {
         this.baseExercise = baseExercise;
@@ -73,6 +80,21 @@ public class ExerciseDetailDtoBuilder {
         return this;
     }
 
+    public ExerciseDetailDtoBuilder withMuscles(List<ExerciseMuscleDto> muscles) {
+        this.muscles = muscles;
+        return this;
+    }
+
+    public ExerciseDetailDtoBuilder withEquipments(List<ExerciseEquipmentDto> equipments) {
+        this.equipments = equipments;
+        return this;
+    }
+
+    public ExerciseDetailDtoBuilder withTags(List<TagDto> tags) {
+        this.tags = tags;
+        return this;
+    }
+
     public ExerciseDetailDto build() {
         return new ExerciseDetailDto(
                 baseExercise,
@@ -83,7 +105,10 @@ public class ExerciseDetailDtoBuilder {
                 media,
                 categories,
                 safety,
-                safetyContraindications
+                safetyContraindications,
+                muscles,
+                equipments,
+                tags
         );
     }
 
