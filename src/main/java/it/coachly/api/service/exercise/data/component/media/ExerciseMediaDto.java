@@ -5,13 +5,13 @@ import it.coachly.api.enums.media.MediaPurposeEnum;
 import it.coachly.api.enums.media.MediaTypeEnum;
 import it.coachly.api.enums.media.ViewAngleEnum;
 import it.coachly.api.model.exercise.media.QExerciseMedia;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
 @Data
-@Builder
+@SuperBuilder
 public class ExerciseMediaDto {
 
     private UUID id;

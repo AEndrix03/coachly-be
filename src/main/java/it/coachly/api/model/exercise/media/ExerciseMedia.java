@@ -7,8 +7,7 @@ import it.coachly.api.model.exercise.core.Exercise;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -20,6 +19,9 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "exercise_media")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExerciseMedia {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -30,8 +32,11 @@ public class ExerciseMedia {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercise;
+
+    @Column(name = "exercise_id", nullable = false)
+    private UUID exerciseId;
 
     @Size(max = 30)
     @NotNull
