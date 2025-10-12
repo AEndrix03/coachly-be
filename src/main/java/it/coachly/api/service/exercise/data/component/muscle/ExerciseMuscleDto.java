@@ -5,11 +5,11 @@ import it.coachly.api.enums.muscle.InvolvementLevelEnum;
 import it.coachly.api.model.muscle.exercise.QExerciseMuscle;
 import it.coachly.api.service.muscle.data.ContractionTypeDto;
 import it.coachly.api.service.muscle.data.MuscleDto;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@SuperBuilder
 public class ExerciseMuscleDto {
 
     private MuscleDto muscle;

@@ -7,8 +7,7 @@ import it.coachly.api.model.muscle.Muscle;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -20,6 +19,9 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "exercise_muscles")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExerciseMuscle {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -30,14 +32,20 @@ public class ExerciseMuscle {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercise;
+
+    @Column(name = "exercise_id", nullable = false)
+    private UUID exerciseId;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "muscle_id", nullable = false)
+    @JoinColumn(name = "muscle_id", nullable = false, insertable = false, updatable = false)
     private Muscle muscle;
+
+    @Column(name = "muscle_id", nullable = false)
+    private UUID muscleId;
 
     @Size(max = 30)
     @NotNull
@@ -45,8 +53,11 @@ public class ExerciseMuscle {
     private InvolvementLevelEnum involvementLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "primary_contraction_type_id")
+    @JoinColumn(name = "primary_contraction_type_id", insertable = false, updatable = false)
     private ContractionType primaryContractionType;
+
+    @Column(name = "primary_contraction_type_id")
+    private UUID primaryContractionTypeId;
 
     @Column(name = "activation_percentage")
     private Integer activationPercentage;

@@ -5,8 +5,7 @@ import it.coachly.api.model.exercise.core.Exercise;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.OnDelete;
@@ -20,6 +19,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "exercise_safety")
 public class ExerciseSafety {
     @Id
@@ -30,8 +32,11 @@ public class ExerciseSafety {
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercises;
+
+    @Column(name = "exercise_id", nullable = false)
+    private UUID exerciseId;
 
     @Size(max = 20)
     @NotNull

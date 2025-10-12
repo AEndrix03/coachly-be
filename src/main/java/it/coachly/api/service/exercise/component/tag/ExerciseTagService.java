@@ -1,0 +1,15 @@
+package it.coachly.api.service.exercise.component.tag;
+
+import it.coachly.api.service.exercise.data.component.tag.save.ExerciseTagSaveDto;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface ExerciseTagService {
+    void save(ExerciseTagSaveDto dto);
+
+    List<Void> saveAll(List<ExerciseTagSaveDto> dtos);
+
+    void deleteById(UUID exerciseId, UUID tagId);
+}
+

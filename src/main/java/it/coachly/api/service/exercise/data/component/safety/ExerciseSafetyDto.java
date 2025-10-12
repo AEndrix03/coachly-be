@@ -3,14 +3,14 @@ package it.coachly.api.service.exercise.data.component.safety;
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.safety.RiskLevelEnum;
 import it.coachly.api.model.exercise.safety.QExerciseSafety;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
 import java.util.UUID;
 
 @Data
-@Builder
+@SuperBuilder
 public class ExerciseSafetyDto {
 
     private UUID id;

@@ -1,11 +1,10 @@
 package it.coachly.api.model.equipment.equipment;
 
-import it.coachly.api.model.exercise.core.Exercise;
 import it.coachly.api.model.equipment.Equipment;
+import it.coachly.api.model.exercise.core.Exercise;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -15,6 +14,9 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "exercise_equipment")
 public class ExerciseEquipment {
@@ -27,14 +29,20 @@ public class ExerciseEquipment {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercise;
+
+    @Column(name = "exercise_id", nullable = false)
+    private UUID exerciseId;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "equipment_id", nullable = false)
+    @JoinColumn(name = "equipment_id", nullable = false, insertable = false, updatable = false)
     private Equipment equipment;
+
+    @Column(name = "equipment_id", nullable = false)
+    private UUID equipmentId;
 
     @ColumnDefault("true")
     @Column(name = "is_required")

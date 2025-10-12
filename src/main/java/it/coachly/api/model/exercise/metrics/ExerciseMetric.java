@@ -2,8 +2,7 @@ package it.coachly.api.model.exercise.metrics;
 
 import it.coachly.api.model.exercise.core.Exercise;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -14,6 +13,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "exercise_metrics")
 public class ExerciseMetric {
     @Id
@@ -24,8 +26,11 @@ public class ExerciseMetric {
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercises;
+
+    @Column(name = "exercise_id", nullable = false)
+    private UUID exerciseId;
 
     @ColumnDefault("0")
     @Column(name = "popularity_score")

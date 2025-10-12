@@ -3,8 +3,7 @@ package it.coachly.api.model.tag.exercise;
 import it.coachly.api.model.exercise.core.Exercise;
 import it.coachly.api.model.tag.Tag;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -15,6 +14,9 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "exercise_tags")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExerciseTag {
     @EmbeddedId
     private ExerciseTagId id;
@@ -22,7 +24,7 @@ public class ExerciseTag {
     @MapsId("exerciseId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercise;
 
     @MapsId("tagId")
