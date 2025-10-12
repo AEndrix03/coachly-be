@@ -1,4 +1,4 @@
-package it.coachly.api.service.exercise.data.muscle;
+package it.coachly.api.service.exercise.data.component.muscle;
 
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.muscle.InvolvementLevelEnum;

@@ -11,17 +11,17 @@ import it.coachly.api.model.muscle.QMuscle;
 import it.coachly.api.model.muscle.exercise.QExerciseMuscle;
 import it.coachly.api.model.tag.QTag;
 import it.coachly.api.model.tag.exercise.QExerciseTag;
-import it.coachly.api.service.exercise.data.core.ExerciseEnvironmentDto;
-import it.coachly.api.service.exercise.data.core.ExerciseInstructionDto;
-import it.coachly.api.service.exercise.data.core.ExerciseMovementPatternDto;
-import it.coachly.api.service.exercise.data.core.ExerciseVariantDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseEnvironmentDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseInstructionDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseMovementPatternDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseVariantDto;
+import it.coachly.api.service.exercise.data.component.equipment.ExerciseEquipmentDto;
+import it.coachly.api.service.exercise.data.component.media.ExerciseMediaDto;
+import it.coachly.api.service.exercise.data.component.muscle.ExerciseMuscleDto;
+import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyContraindicationDto;
+import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyDto;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
-import it.coachly.api.service.exercise.data.equipment.ExerciseEquipmentDto;
-import it.coachly.api.service.exercise.data.media.ExerciseMediaDto;
-import it.coachly.api.service.exercise.data.muscle.ExerciseMuscleDto;
-import it.coachly.api.service.exercise.data.safety.ExerciseSafetyContraindicationDto;
-import it.coachly.api.service.exercise.data.safety.ExerciseSafetyDto;
-import it.coachly.api.service.exercise.finder.category.ExerciseCategoryFinder;
+import it.coachly.api.service.exercise.finder.component.category.ExerciseCategoryFinder;
 import it.coachly.api.service.tag.data.TagDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -85,6 +85,7 @@ public class ExerciseDetailFinder {
                 .innerJoin(qEI).on(qEI.exercise.id.eq(qE.id))
                 .from(qEI)
                 .where(qE.id.eq(exerciseId))
+                .orderBy(qEI.stepNumber.asc())
                 .fetch();
     }
 

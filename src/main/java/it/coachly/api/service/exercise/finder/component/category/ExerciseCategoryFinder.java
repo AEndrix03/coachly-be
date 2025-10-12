@@ -1,9 +1,9 @@
-package it.coachly.api.service.exercise.finder.category;
+package it.coachly.api.service.exercise.finder.component.category;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import it.coachly.api.model.exercise.category.QExerciseCategory;
 import it.coachly.api.model.exercise.category.QExerciseCategoryMapping;
-import it.coachly.api.service.exercise.data.category.ExerciseCategoryDto;
+import it.coachly.api.service.exercise.data.component.category.ExerciseCategoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

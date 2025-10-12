@@ -1,4 +1,4 @@
-package it.coachly.api.service.exercise.data.safety;
+package it.coachly.api.service.exercise.data.component.safety;
 
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.safety.ContraindicationTypeEnum;

@@ -1,16 +1,17 @@
-package it.coachly.api.service.exercise.data.core;
+package it.coachly.api.service.exercise.data.component.core;
 
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.instruction.InstructionTypeEnum;
 import it.coachly.api.model.exercise.core.QExerciseInstruction;
-import lombok.Builder;
+import it.coachly.api.service.exercise.data.core.QExerciseInstructionDto;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
 import java.util.UUID;
 
 @Data
-@Builder
+@SuperBuilder
 public class ExerciseInstructionDto {
 
     private final UUID id;

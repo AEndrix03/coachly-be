@@ -1,4 +1,4 @@
-package it.coachly.api.service.exercise.data.core;
+package it.coachly.api.service.exercise.data.component.core;
 
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.exercise.MovementPatternEnum;

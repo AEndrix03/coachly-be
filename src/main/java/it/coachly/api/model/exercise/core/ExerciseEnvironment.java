@@ -1,8 +1,7 @@
 package it.coachly.api.model.exercise.core;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -13,6 +12,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "exercise_environment")
 public class ExerciseEnvironment {
     @Id
@@ -23,8 +25,11 @@ public class ExerciseEnvironment {
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "exercise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false, insertable = false, updatable = false)
     private Exercise exercises;
+
+    @Column(name = "exercise_id", nullable = false)
+    private UUID exerciseId;
 
     @ColumnDefault("false")
     @Column(name = "can_do_at_home")

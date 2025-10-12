@@ -1,17 +1,17 @@
 package it.coachly.api.service.exercise.data.detail.builder;
 
 import it.coachly.api.service.exercise.data.ExerciseDto;
-import it.coachly.api.service.exercise.data.category.ExerciseCategoryDto;
-import it.coachly.api.service.exercise.data.core.ExerciseEnvironmentDto;
-import it.coachly.api.service.exercise.data.core.ExerciseInstructionDto;
-import it.coachly.api.service.exercise.data.core.ExerciseMovementPatternDto;
-import it.coachly.api.service.exercise.data.core.ExerciseVariantDto;
+import it.coachly.api.service.exercise.data.component.category.ExerciseCategoryDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseEnvironmentDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseInstructionDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseMovementPatternDto;
+import it.coachly.api.service.exercise.data.component.core.ExerciseVariantDto;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
-import it.coachly.api.service.exercise.data.equipment.ExerciseEquipmentDto;
-import it.coachly.api.service.exercise.data.media.ExerciseMediaDto;
-import it.coachly.api.service.exercise.data.muscle.ExerciseMuscleDto;
-import it.coachly.api.service.exercise.data.safety.ExerciseSafetyContraindicationDto;
-import it.coachly.api.service.exercise.data.safety.ExerciseSafetyDto;
+import it.coachly.api.service.exercise.data.component.equipment.ExerciseEquipmentDto;
+import it.coachly.api.service.exercise.data.component.media.ExerciseMediaDto;
+import it.coachly.api.service.exercise.data.component.muscle.ExerciseMuscleDto;
+import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyContraindicationDto;
+import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyDto;
 import it.coachly.api.service.tag.data.TagDto;
 
 import java.util.List;

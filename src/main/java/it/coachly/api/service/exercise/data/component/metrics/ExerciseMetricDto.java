@@ -1,4 +1,4 @@
-package it.coachly.api.service.exercise.data.metrics;
+package it.coachly.api.service.exercise.data.component.metrics;
 
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.model.exercise.metrics.QExerciseMetric;

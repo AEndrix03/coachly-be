@@ -1,4 +1,4 @@
-package it.coachly.api.service.exercise.data.media;
+package it.coachly.api.service.exercise.data.component.media;
 
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.media.MediaPurposeEnum;
