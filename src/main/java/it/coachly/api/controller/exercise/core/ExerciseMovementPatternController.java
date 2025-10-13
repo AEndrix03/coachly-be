@@ -1,6 +1,7 @@
 package it.coachly.api.controller.exercise.core;
 
 import it.coachly.api.service.exercise.component.core.ExerciseMovementPatternService;
+import it.coachly.api.service.exercise.data.component.core.ExerciseMovementPatternDto;
 import it.coachly.api.service.exercise.data.component.core.save.ExerciseMovementPatternSaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,11 @@ import java.util.UUID;
 public class ExerciseMovementPatternController {
     private final ExerciseMovementPatternService exerciseMovementPatternService;
 
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<ExerciseMovementPatternDto> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseMovementPatternService.getExerciseMovementPattern(exerciseId));
+    }
+
     @PatchMapping
     public ResponseEntity<UUID> save(@RequestBody @Valid ExerciseMovementPatternSaveDto dto) {
         return ResponseEntity.ok(exerciseMovementPatternService.save(dto));
@@ -26,4 +32,3 @@ public class ExerciseMovementPatternController {
         return ResponseEntity.noContent().build();
     }
 }
-

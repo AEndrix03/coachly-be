@@ -1,6 +1,7 @@
 package it.coachly.api.controller.exercise.core;
 
 import it.coachly.api.service.exercise.component.core.ExerciseInstructionService;
+import it.coachly.api.service.exercise.data.component.core.ExerciseInstructionDto;
 import it.coachly.api.service.exercise.data.component.core.save.ExerciseInstructionSaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,10 @@ public class ExerciseInstructionController {
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         exerciseInstructionService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<List<ExerciseInstructionDto>> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseInstructionService.getExerciseInstructions(exerciseId));
     }
 }

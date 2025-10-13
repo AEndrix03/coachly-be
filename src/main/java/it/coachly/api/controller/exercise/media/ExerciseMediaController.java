@@ -1,6 +1,7 @@
 package it.coachly.api.controller.exercise.media;
 
 import it.coachly.api.service.exercise.component.media.ExerciseMediaService;
+import it.coachly.api.service.exercise.data.component.media.ExerciseMediaDto;
 import it.coachly.api.service.exercise.data.component.media.save.ExerciseMediaSaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExerciseMediaController {
     private final ExerciseMediaService exerciseMediaService;
+
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<List<ExerciseMediaDto>> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseMediaService.getExerciseMedia(exerciseId));
+    }
 
     @PatchMapping
     public ResponseEntity<UUID> save(@RequestBody @Valid ExerciseMediaSaveDto dto) {

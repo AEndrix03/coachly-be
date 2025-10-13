@@ -1,6 +1,7 @@
 package it.coachly.api.controller.exercise.safety;
 
 import it.coachly.api.service.exercise.component.safety.ExerciseSafetyContraindicationService;
+import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyContraindicationDto;
 import it.coachly.api.service.exercise.data.component.safety.save.ExerciseSafetyContraindicationSaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExerciseSafetyContraindicationController {
     private final ExerciseSafetyContraindicationService exerciseSafetyContraindicationService;
+
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<List<ExerciseSafetyContraindicationDto>> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseSafetyContraindicationService.getExerciseSafetyContraindicationNotes(exerciseId));
+    }
 
     @PatchMapping
     public ResponseEntity<UUID> save(@RequestBody @Valid ExerciseSafetyContraindicationSaveDto dto) {
@@ -32,4 +38,3 @@ public class ExerciseSafetyContraindicationController {
         return ResponseEntity.noContent().build();
     }
 }
-

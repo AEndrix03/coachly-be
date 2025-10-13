@@ -1,12 +1,14 @@
 package it.coachly.api.controller.exercise.safety;
 
 import it.coachly.api.service.exercise.component.safety.ExerciseSafetyService;
+import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyDto;
 import it.coachly.api.service.exercise.data.component.safety.save.ExerciseSafetySaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -14,6 +16,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExerciseSafetyController {
     private final ExerciseSafetyService exerciseSafetyService;
+
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<List<ExerciseSafetyDto>> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseSafetyService.getExerciseSafetyNotes(exerciseId));
+    }
 
     @PatchMapping
     public ResponseEntity<UUID> save(@RequestBody @Valid ExerciseSafetySaveDto dto) {
@@ -26,4 +33,3 @@ public class ExerciseSafetyController {
         return ResponseEntity.noContent().build();
     }
 }
-

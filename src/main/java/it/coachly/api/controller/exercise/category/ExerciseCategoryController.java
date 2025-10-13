@@ -1,6 +1,7 @@
 package it.coachly.api.controller.exercise.category;
 
 import it.coachly.api.service.exercise.component.category.ExerciseCategoryService;
+import it.coachly.api.service.exercise.data.component.category.ExerciseCategoryDto;
 import it.coachly.api.service.exercise.data.component.category.save.ExerciseCategorySaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,16 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExerciseCategoryController {
     private final ExerciseCategoryService exerciseCategoryService;
+
+    @GetMapping
+    public ResponseEntity<List<ExerciseCategoryDto>> getAll() {
+        return ResponseEntity.ok(exerciseCategoryService.getExerciseCategories());
+    }
+
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<List<ExerciseCategoryDto>> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseCategoryService.getExerciseCategory(exerciseId));
+    }
 
     @PatchMapping
     public ResponseEntity<UUID> save(@RequestBody @Valid ExerciseCategorySaveDto dto) {

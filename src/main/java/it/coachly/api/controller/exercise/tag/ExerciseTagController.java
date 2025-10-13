@@ -2,6 +2,7 @@ package it.coachly.api.controller.exercise.tag;
 
 import it.coachly.api.service.exercise.component.tag.ExerciseTagService;
 import it.coachly.api.service.exercise.data.component.tag.save.ExerciseTagSaveDto;
+import it.coachly.api.service.tag.data.TagDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExerciseTagController {
     private final ExerciseTagService exerciseTagService;
+
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<List<TagDto>> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseTagService.getExerciseTags(exerciseId));
+    }
 
     @PatchMapping
     public ResponseEntity<Void> save(@RequestBody @Valid ExerciseTagSaveDto dto) {

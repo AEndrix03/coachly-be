@@ -1,6 +1,7 @@
 package it.coachly.api.controller.exercise.muscle;
 
 import it.coachly.api.service.exercise.component.muscle.ExerciseMuscleService;
+import it.coachly.api.service.exercise.data.component.muscle.ExerciseMuscleDto;
 import it.coachly.api.service.exercise.data.component.muscle.save.ExerciseMuscleSaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExerciseMuscleController {
     private final ExerciseMuscleService exerciseMuscleService;
+
+    @GetMapping("/{exerciseId}")
+    public ResponseEntity<List<ExerciseMuscleDto>> getByExercise(@PathVariable UUID exerciseId) {
+        return ResponseEntity.ok(exerciseMuscleService.getExerciseMuscles(exerciseId));
+    }
 
     @PatchMapping
     public ResponseEntity<UUID> save(@RequestBody @Valid ExerciseMuscleSaveDto dto) {
