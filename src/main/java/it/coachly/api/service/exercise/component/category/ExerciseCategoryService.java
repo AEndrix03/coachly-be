@@ -1,5 +1,6 @@
 package it.coachly.api.service.exercise.component.category;
 
+import it.coachly.api.service.exercise.data.component.category.ExerciseCategoryDto;
 import it.coachly.api.service.exercise.data.component.category.save.ExerciseCategorySaveDto;
 
 import java.util.List;
@@ -11,5 +12,8 @@ public interface ExerciseCategoryService {
     List<UUID> saveAll(List<ExerciseCategorySaveDto> dtos);
 
     void deleteById(UUID id);
-}
 
+    List<ExerciseCategoryDto> getExerciseCategories();
+
+    List<ExerciseCategoryDto> getExerciseCategory(UUID exerciseId);
+}

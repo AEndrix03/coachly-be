@@ -3,7 +3,9 @@ package it.coachly.api.service.exercise.component.core;
 import it.aredegalli.common.exception.NotFoundException;
 import it.coachly.api.repository.exercise.core.ExerciseInstructionRepository;
 import it.coachly.api.repository.exercise.core.ExerciseRepository;
+import it.coachly.api.service.exercise.data.component.core.ExerciseInstructionDto;
 import it.coachly.api.service.exercise.data.component.core.save.ExerciseInstructionSaveDto;
+import it.coachly.api.service.exercise.finder.component.core.ExerciseInstructionFinder;
 import it.coachly.api.service.exercise.mapper.component.core.ExerciseInstructionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ public class ExerciseInstructionServiceImpl implements ExerciseInstructionServic
     private final ExerciseInstructionRepository exerciseInstructionRepository;
 
     private final ExerciseInstructionMapper exerciseInstructionMapper;
+    private final ExerciseInstructionFinder exerciseInstructionFinder;
 
     @Override
     public UUID save(ExerciseInstructionSaveDto dto) {
@@ -38,4 +41,8 @@ public class ExerciseInstructionServiceImpl implements ExerciseInstructionServic
         exerciseInstructionRepository.deleteById(id);
     }
 
+    @Override
+    public List<ExerciseInstructionDto> getExerciseInstructions(UUID exerciseId) {
+        return exerciseInstructionFinder.findExerciseInstructions(exerciseId);
+    }
 }

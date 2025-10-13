@@ -20,8 +20,8 @@ public class ExerciseTagFinder {
         QTag qT = QTag.tag;
         return qu.select(TagDto.getProjection())
                 .from(qET)
-                .innerJoin(qT).on(qET.tagId.eq(qT.id))
-                .where(qET.exerciseId.eq(exerciseId))
+                .innerJoin(qT).on(qET.tag.id.eq(qT.id))
+                .where(qET.exercise.id.eq(exerciseId))
                 .fetch();
     }
 }

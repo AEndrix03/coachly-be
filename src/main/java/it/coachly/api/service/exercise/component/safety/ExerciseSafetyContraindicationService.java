@@ -1,5 +1,6 @@
 package it.coachly.api.service.exercise.component.safety;
 
+import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyContraindicationDto;
 import it.coachly.api.service.exercise.data.component.safety.save.ExerciseSafetyContraindicationSaveDto;
 
 import java.util.List;
@@ -11,5 +12,6 @@ public interface ExerciseSafetyContraindicationService {
     List<UUID> saveAll(List<ExerciseSafetyContraindicationSaveDto> dtos);
 
     void deleteById(UUID id);
-}
 
+    List<ExerciseSafetyContraindicationDto> getExerciseSafetyContraindicationNotes(UUID exerciseId);
+}

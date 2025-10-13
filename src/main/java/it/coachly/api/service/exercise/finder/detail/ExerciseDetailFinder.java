@@ -1,19 +1,18 @@
 package it.coachly.api.service.exercise.finder.detail;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import it.coachly.api.model.exercise.core.QExercise;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
+import it.coachly.api.service.exercise.finder.ExerciseFinder;
 import it.coachly.api.service.exercise.finder.component.category.ExerciseCategoryFinder;
 import it.coachly.api.service.exercise.finder.component.core.ExerciseEnvironmentFinder;
-import it.coachly.api.service.exercise.finder.component.equipment.ExerciseEquipmentFinder;
 import it.coachly.api.service.exercise.finder.component.core.ExerciseInstructionFinder;
-import it.coachly.api.service.exercise.finder.component.media.ExerciseMediaFinder;
 import it.coachly.api.service.exercise.finder.component.core.ExerciseMovementPatternFinder;
+import it.coachly.api.service.exercise.finder.component.core.ExerciseVariantFinder;
+import it.coachly.api.service.exercise.finder.component.equipment.ExerciseEquipmentFinder;
+import it.coachly.api.service.exercise.finder.component.media.ExerciseMediaFinder;
 import it.coachly.api.service.exercise.finder.component.muscle.ExerciseMuscleFinder;
 import it.coachly.api.service.exercise.finder.component.safety.ExerciseSafetyContraindicationFinder;
 import it.coachly.api.service.exercise.finder.component.safety.ExerciseSafetyFinder;
 import it.coachly.api.service.exercise.finder.component.tag.ExerciseTagFinder;
-import it.coachly.api.service.exercise.finder.component.core.ExerciseVariantFinder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExerciseDetailFinder {
 
-    private final JPAQueryFactory qu;
+    private final ExerciseFinder exerciseFinder;
     private final ExerciseCategoryFinder exerciseCategoryFinder;
     private final ExerciseMediaFinder exerciseMediaFinder;
     private final ExerciseMuscleFinder exerciseMuscleFinder;
@@ -37,13 +36,8 @@ public class ExerciseDetailFinder {
     private final ExerciseVariantFinder exerciseVariantFinder;
 
     public ExerciseDetailDto findDetailById(UUID exerciseId) {
-        QExercise qE = QExercise.exercise;
         return ExerciseDetailDto.builderDetail()
-                .withBaseExercise(
-                        this.qu.select(ExerciseDetailDto.getProjection())
-                                .from(qE)
-                                .where(qE.id.eq(exerciseId))
-                                .fetchOne())
+                .withBaseExercise(this.exerciseFinder.findById(exerciseId))
                 .withEnvironment(this.exerciseEnvironmentFinder.findExerciseEnvironment(exerciseId))
                 .withMovementPattern(this.exerciseMovementPatternFinder.findExerciseMovementPattern(exerciseId))
                 .withInstructions(this.exerciseInstructionFinder.findExerciseInstructions(exerciseId))

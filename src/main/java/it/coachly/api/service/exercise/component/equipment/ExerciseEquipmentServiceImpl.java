@@ -3,7 +3,9 @@ package it.coachly.api.service.exercise.component.equipment;
 import it.aredegalli.common.exception.NotFoundException;
 import it.coachly.api.repository.equipment.equipment.ExerciseEquipmentRepository;
 import it.coachly.api.repository.exercise.core.ExerciseRepository;
+import it.coachly.api.service.exercise.data.component.equipment.ExerciseEquipmentDto;
 import it.coachly.api.service.exercise.data.component.equipment.save.ExerciseEquipmentSaveDto;
+import it.coachly.api.service.exercise.finder.component.equipment.ExerciseEquipmentFinder;
 import it.coachly.api.service.exercise.mapper.component.equipment.ExerciseEquipmentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ public class ExerciseEquipmentServiceImpl implements ExerciseEquipmentService {
     private final ExerciseRepository exerciseRepository;
     private final ExerciseEquipmentRepository exerciseEquipmentRepository;
     private final ExerciseEquipmentMapper exerciseEquipmentMapper;
+    private final ExerciseEquipmentFinder exerciseEquipmentFinder;
 
     @Override
     public UUID save(ExerciseEquipmentSaveDto dto) {
@@ -34,5 +37,9 @@ public class ExerciseEquipmentServiceImpl implements ExerciseEquipmentService {
     public void deleteById(UUID id) {
         exerciseEquipmentRepository.deleteById(id);
     }
-}
 
+    @Override
+    public List<ExerciseEquipmentDto> getExerciseEquipments(UUID exerciseId) {
+        return exerciseEquipmentFinder.findExerciseEquipments(exerciseId);
+    }
+}
