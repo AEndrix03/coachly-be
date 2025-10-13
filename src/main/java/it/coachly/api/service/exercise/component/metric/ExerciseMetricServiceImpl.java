@@ -1,4 +1,4 @@
-package it.coachly.api.service.exercise.component.core;
+package it.coachly.api.service.exercise.component.metric;
 
 import it.aredegalli.common.exception.NotFoundException;
 import it.coachly.api.repository.exercise.core.ExerciseRepository;

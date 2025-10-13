@@ -1,4 +1,4 @@
-package it.coachly.api.controller.exercise;
+package it.coachly.api.controller.exercise.muscle;
 
 import it.coachly.api.service.exercise.component.muscle.ExerciseMuscleService;
 import it.coachly.api.service.exercise.data.component.muscle.save.ExerciseMuscleSaveDto;

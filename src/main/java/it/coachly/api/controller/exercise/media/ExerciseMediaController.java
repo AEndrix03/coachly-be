@@ -1,4 +1,4 @@
-package it.coachly.api.controller.exercise;
+package it.coachly.api.controller.exercise.media;
 
 import it.coachly.api.service.exercise.component.media.ExerciseMediaService;
 import it.coachly.api.service.exercise.data.component.media.save.ExerciseMediaSaveDto;

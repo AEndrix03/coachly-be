@@ -1,4 +1,4 @@
-package it.coachly.api.service.exercise.component.core;
+package it.coachly.api.service.exercise.component.metric;
 
 import it.coachly.api.service.exercise.data.component.metrics.save.ExerciseMetricSaveDto;
 

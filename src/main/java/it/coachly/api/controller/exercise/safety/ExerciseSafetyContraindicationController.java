@@ -1,6 +1,6 @@
-package it.coachly.api.controller.exercise;
+package it.coachly.api.controller.exercise.safety;
 
-import it.coachly.api.service.exercise.component.core.ExerciseSafetyContraindicationService;
+import it.coachly.api.service.exercise.component.safety.ExerciseSafetyContraindicationService;
 import it.coachly.api.service.exercise.data.component.safety.save.ExerciseSafetyContraindicationSaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

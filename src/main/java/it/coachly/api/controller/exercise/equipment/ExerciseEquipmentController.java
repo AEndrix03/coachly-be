@@ -1,4 +1,4 @@
-package it.coachly.api.controller.exercise;
+package it.coachly.api.controller.exercise.equipment;
 
 import it.coachly.api.service.exercise.component.equipment.ExerciseEquipmentService;
 import it.coachly.api.service.exercise.data.component.equipment.save.ExerciseEquipmentSaveDto;

@@ -1,4 +1,4 @@
-package it.coachly.api.controller.exercise;
+package it.coachly.api.controller.exercise.tag;
 
 import it.coachly.api.service.exercise.component.tag.ExerciseTagService;
 import it.coachly.api.service.exercise.data.component.tag.save.ExerciseTagSaveDto;

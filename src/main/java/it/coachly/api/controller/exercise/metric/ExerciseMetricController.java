@@ -1,6 +1,6 @@
-package it.coachly.api.controller.exercise;
+package it.coachly.api.controller.exercise.metric;
 
-import it.coachly.api.service.exercise.component.core.ExerciseMetricService;
+import it.coachly.api.service.exercise.component.metric.ExerciseMetricService;
 import it.coachly.api.service.exercise.data.component.metrics.save.ExerciseMetricSaveDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
