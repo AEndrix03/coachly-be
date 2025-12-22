@@ -3,58 +3,22 @@ version: "3.9"
 services:
   coachly-be:
     container_name: coachly-be
-
     build:
       context: .
       dockerfile: Dockerfile
-
     image: coachly/coachly-be:latest
     restart: unless-stopped
-
     ports:
       - "${COACHLY_PORT:-8443}:8443"
-
     environment:
-      # Spring
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
-      SERVER_PORT: 8443
-
-      # JVM (override-safe)
-      JAVA_TOOL_OPTIONS: >
-        -XX:+UseContainerSupport
-        -XX:MaxRAMPercentage=75
-        -Djava.security.egd=file:/dev/./urandom
-
+      JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75
       TZ: ${TZ:-Europe/Rome}
-
-    # OPZIONE 1 (CONSIGLIATA): Drop selettivo di capabilities non necessarie
-    # Mantieni solo quelle base necessarie per Java
-    cap_drop:
-      - NET_RAW
-      - MKNOD
-      - AUDIT_WRITE
-      - NET_BIND_SERVICE
-    
-    # OPZIONE 2 (ALTERNATIVA): Se vuoi cap_drop: ALL, devi riaggiungere le capability necessarie
-    # Decommenta questa sezione e commenta la OPZIONE 1 sopra
-    # cap_drop:
-    #   - ALL
-    # cap_add:
-    #   - CHOWN
-    #   - SETUID
-    #   - SETGID
-
     security_opt:
       - no-new-privileges:true
-
-    # Filesystem read-only con eccezioni
     read_only: true
     tmpfs:
-      - /tmp:rw,nosuid,nodev,size=128m
-      # Java potrebbe aver bisogno di questi path per logging/cache
-      - /app/logs:rw,nosuid,nodev,size=64m
-
-    # Limiti risorse (Docker standalone)
+      - /tmp:size=128m
     deploy:
       resources:
         limits:
@@ -63,8 +27,6 @@ services:
         reservations:
           cpus: "0.25"
           memory: 256M
-
-    # Logging
     logging:
       driver: json-file
       options:
