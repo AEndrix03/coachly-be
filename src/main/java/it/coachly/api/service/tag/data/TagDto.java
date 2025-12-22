@@ -3,14 +3,14 @@ package it.coachly.api.service.tag.data;
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.tag.TagTypeEnum;
 import it.coachly.api.model.tag.QTag;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
 import java.util.UUID;
 
 @Data
-@Builder
+@SuperBuilder
 public class TagDto {
 
     private UUID id;

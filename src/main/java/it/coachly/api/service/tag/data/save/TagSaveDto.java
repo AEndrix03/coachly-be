@@ -3,6 +3,7 @@ package it.coachly.api.service.tag.data.save;
 import it.coachly.api.enums.tag.TagTypeEnum;
 import it.coachly.api.service.tag.data.TagDto;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @Data
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 public class TagSaveDto extends TagDto {
 
     private Boolean isActive;

@@ -4,6 +4,7 @@ import it.coachly.api.enums.equipment.EquipmentCategoryEnum;
 import it.coachly.api.enums.equipment.EquipmentTypeEnum;
 import it.coachly.api.service.equipment.data.EquipmentDto;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @Data
 @SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 public class EquipmentSaveDto extends EquipmentDto {
 
     private Boolean isActive;

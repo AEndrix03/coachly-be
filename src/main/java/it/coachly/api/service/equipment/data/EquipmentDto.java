@@ -6,11 +6,13 @@ import it.coachly.api.enums.equipment.EquipmentTypeEnum;
 import it.coachly.api.model.equipment.QEquipment;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
 import java.util.UUID;
 
 @Data
+@SuperBuilder
 @RequiredArgsConstructor
 public class EquipmentDto {
 
