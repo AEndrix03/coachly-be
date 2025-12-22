@@ -2,33 +2,39 @@ version: "3.9"
 
 services:
   coachly-be:
-    image: coachly/coachly-be:latest
     container_name: coachly-be
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: coachly/coachly-be:latest
     restart: unless-stopped
 
     ports:
       - "${COACHLY_PORT:-8443}:8443"
 
     environment:
+      # Spring
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
-
-      # JVM tuning (override-safe)
-      JAVA_TOOL_OPTIONS: >
-        -XX:MaxRAMPercentage=75
-        -XX:+UseContainerSupport
-
-      # Spring config
       SERVER_PORT: 8443
+
+      # JVM (override-safe)
+      JAVA_TOOL_OPTIONS: >
+        -XX:+UseContainerSupport
+        -XX:MaxRAMPercentage=75
+        -Djava.security.egd=file:/dev/./urandom
+
       TZ: ${TZ:-Europe/Rome}
 
-    # Sicurezza
+    # 🔐 HARDENING
     read_only: true
     cap_drop:
       - ALL
     security_opt:
       - no-new-privileges:true
 
-    # Tmpfs per /tmp se serve a Spring
+    # /tmp in RAM (necessario a Spring)
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=64m
 
@@ -42,16 +48,10 @@ services:
           cpus: "0.25"
           memory: 256M
 
-    # Logging (stdout only)
+    # Logging
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
         max-size: "10m"
         max-file: "3"
 
-    networks:
-      - coachly-net
-
-networks:
-  coachly-net:
-    driver: bridge
