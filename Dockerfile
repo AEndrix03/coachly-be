@@ -17,15 +17,7 @@ FROM eclipse-temurin:21-jdk AS jlink
 WORKDIR /jvm
 
 RUN jlink \
-  --add-modules \
-    java.base, \
-    java.logging, \
-    java.naming, \
-    java.management, \
-    java.security.jgss, \
-    java.instrument, \
-    java.sql, \
-    jdk.unsupported \
+  --add-modules java.base,java.logging,java.naming,java.management,java.security.jgss,java.instrument,java.sql,jdk.unsupported \
   --strip-debug \
   --no-man-pages \
   --no-header-files \
@@ -43,12 +35,4 @@ COPY --from=build /app/target/coachly-be-0.0.1-SNAPSHOT.jar coachly-be.jar
 
 EXPOSE 8443
 
-ENTRYPOINT [
-  "/jre/bin/java",
-  "-XX:+UseContainerSupport",
-  "-XX:MaxRAMPercentage=75",
-  "-Djava.security.egd=file:/dev/./urandom",
-  "-Dspring.profiles.active=prod",
-  "-jar",
-  "coachly-be.jar"
-]
+ENTRYPOINT ["/jre/bin/java","-XX:+UseContainerSupport","-XX:MaxRAMPercentage=75","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=prod","-jar","coachly-be.jar"]
