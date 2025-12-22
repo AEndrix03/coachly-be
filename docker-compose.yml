@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  coachly-be:
+    image: coachly/coachly-be:latest
+    container_name: coachly-be
+    restart: unless-stopped
+
+    ports:
+      - "${COACHLY_PORT:-8443}:8443"
+
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+
+      # JVM tuning (override-safe)
+      JAVA_TOOL_OPTIONS: >
+        -XX:MaxRAMPercentage=75
+        -XX:+UseContainerSupport
+
+      # Spring config
+      SERVER_PORT: 8443
+      TZ: ${TZ:-Europe/Rome}
+
+    # Sicurezza
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+    # Tmpfs per /tmp se serve a Spring
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+
+    # Limiti risorse (Docker standalone)
+    deploy:
+      resources:
+        limits:
+          cpus: "1.00"
+          memory: 768M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+
+    # Logging (stdout only)
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    networks:
+      - coachly-net
+
+networks:
+  coachly-net:
+    driver: bridge
