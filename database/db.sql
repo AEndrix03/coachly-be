@@ -988,3 +988,74 @@ COMMENT ON COLUMN workout_template_library.is_premium IS 'Template premium a pag
 
 CREATE INDEX idx_template_library_category ON workout_template_library(category);
 CREATE INDEX idx_template_library_popularity ON workout_template_library(popularity_score DESC);
+
+-- ============================================================================
+-- AUTHENTICATORS
+-- ============================================================================
+
+CREATE TABLE authenticators (
+                                id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                                name VARCHAR(100) NOT NULL UNIQUE,
+                                created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_authenticators_name ON authenticators(name);
+
+-- ============================================================================
+-- USERS
+-- ============================================================================
+
+CREATE TABLE users (
+                       id UUID NOT NULL DEFAULT gen_random_uuid(),
+                       external_id VARCHAR(255) NOT NULL,
+                       authenticator_id UUID NOT NULL REFERENCES authenticators(id) ON DELETE RESTRICT,
+                       extras JSONB,
+                       created_at TIMESTAMP DEFAULT NOW(),
+                       updated_at TIMESTAMP DEFAULT NOW(),
+
+                       PRIMARY KEY (id, external_id, authenticator_id)
+);
+
+CREATE INDEX idx_users_id ON users(id);
+CREATE INDEX idx_users_external_id ON users(external_id);
+CREATE INDEX idx_users_authenticator ON users(authenticator_id);
+CREATE INDEX idx_users_extras ON users USING GIN (extras);
+
+-- ============================================================================
+-- USER INFO
+-- ============================================================================
+
+CREATE TABLE user_info (
+                           id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                           user_id UUID NOT NULL,
+                           username VARCHAR(100) NOT NULL,
+                           created_at TIMESTAMP DEFAULT NOW(),
+                           updated_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE UNIQUE INDEX idx_user_info_username_unique ON user_info(LOWER(username));
+CREATE INDEX idx_user_info_user_id ON user_info(user_id);
+
+-- ============================================================================
+-- FOREIGN KEYS
+-- ============================================================================
+
+ALTER TABLE user_info
+    ADD CONSTRAINT fk_user_info_user
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+ALTER TABLE exercises
+    ADD CONSTRAINT fk_exercises_created_by
+        FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL;
+
+ALTER TABLE user_workout_analytics
+    ADD CONSTRAINT fk_user_workout_analytics_user
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+ALTER TABLE user_personal_records
+    ADD CONSTRAINT fk_user_personal_records_user
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+ALTER TABLE user_exercise_preferences
+    ADD CONSTRAINT fk_user_exercise_preferences_user
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
