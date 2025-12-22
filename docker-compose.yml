@@ -19,12 +19,11 @@ services:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
       SERVER_PORT: 8443
 
-      # JVM con directory temporanea custom
+      # JVM (override-safe)
       JAVA_TOOL_OPTIONS: >
         -XX:+UseContainerSupport
         -XX:MaxRAMPercentage=75
         -Djava.security.egd=file:/dev/./urandom
-        -Djava.io.tmpdir=/app/javatmp
 
       TZ: ${TZ:-Europe/Rome}
 
@@ -34,13 +33,10 @@ services:
     security_opt:
       - no-new-privileges:true
 
-    # /tmp con noexec (sicuro ma limitato)
-    # /app/javatmp per Java (eseguibile ma isolato)
     tmpfs:
-      - /tmp:rw,noexec,nosuid,size=32m
-      - /app/javatmp:rw,nosuid,size=96m
+      - /tmp:rw,nosuid,size=64m
 
-    # Limiti risorse
+    # Limiti risorse (Docker standalone)
     deploy:
       resources:
         limits:
