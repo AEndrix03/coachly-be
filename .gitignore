@@ -45,3 +45,5 @@ build/
 
 ### Qodo
 .qodo/
+
+src/main/resources/jwt/*.pem
