@@ -14,7 +14,7 @@
     <groupId>it.coachly</groupId>
     <artifactId>api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>coachly-be</name>
+    <name>api</name>
     <description>Coachly API</description>
 
     <properties>
