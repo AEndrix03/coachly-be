@@ -5,8 +5,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
 
-import java.net.URL;
-
 @Component
 public class JwtHelper {
 
@@ -26,11 +24,11 @@ public class JwtHelper {
         return jwt.getSubject();
     }
 
-    public URL getIssuer() {
+    public String getIssuer() {
         return getJwt().getClaim("iss");
     }
 
-    public URL getIssuer(Jwt jwt) {
+    public String getIssuer(Jwt jwt) {
         return jwt.getClaim("iss");
     }
 

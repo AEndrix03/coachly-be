@@ -17,7 +17,7 @@ public class UserRetriever {
         var token = this.jwtHelper.getJwt();
 
         var externalId = this.jwtHelper.getUserId(token);
-        var authProvider = this.jwtHelper.getIssuer().toString();
+        var authProvider = this.jwtHelper.getIssuer();
 
         if (authProvider.equalsIgnoreCase("dominatus-backend")) {
             authProvider = "DOMINATUS";
