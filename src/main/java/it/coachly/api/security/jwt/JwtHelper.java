@@ -27,11 +27,11 @@ public class JwtHelper {
     }
 
     public URL getIssuer() {
-        return getJwt().getIssuer();
+        return getJwt().getClaim("iss");
     }
 
     public URL getIssuer(Jwt jwt) {
-        return jwt.getIssuer();
+        return jwt.getClaim("iss");
     }
 
     public String getClaim(String claimName) {
