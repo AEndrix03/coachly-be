@@ -62,8 +62,6 @@ public class WorkoutDto {
                 qWP.targetGoal,
                 Expressions.asDate(LocalDateTime.now()),
                 Expressions.asBoolean(true)
-
-
         );
     }
 }

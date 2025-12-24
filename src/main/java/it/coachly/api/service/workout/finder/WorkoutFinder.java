@@ -21,7 +21,7 @@ public class WorkoutFinder {
         QWorkoutPlan qWP = QWorkoutPlan.workoutPlan;
         return qu.select(WorkoutDto.getProjection())
                 .from(qWP)
-                .where(qWP.createdByUserId.eq(userId))
+                .where(qWP.createdByUserId.eq(userId), qWP.isActive.isTrue())
                 .fetch();
     }
 
