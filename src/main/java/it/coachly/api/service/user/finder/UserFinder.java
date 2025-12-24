@@ -17,13 +17,15 @@ public class UserFinder {
     private final JPAQueryFactory qu;
 
     public UserDto findUserDtoByExternalIdAndAuthProvider(String externalId, String authProvider) {
-        QUser qUser = QUser.user;
+        QUser qU = QUser.user;
         QAuthenticator qA = QAuthenticator.authenticator;
+        QUserInfo qUI = QUserInfo.userInfo;
         return this.qu.query()
                 .select(UserDto.getProjection())
-                .from(qUser)
+                .from(qU)
+                .join(qUI).on(qU.id.id.eq(qUI.userId))
                 .join(qA).on(qA.name.toUpperCase().eq(authProvider.toUpperCase()))
-                .where(qUser.id.externalId.eq(externalId), qUser.id.authenticatorId.eq(qA.id))
+                .where(qU.id.externalId.eq(externalId), qU.id.authenticatorId.eq(qA.id))
                 .fetchOne();
     }
 
