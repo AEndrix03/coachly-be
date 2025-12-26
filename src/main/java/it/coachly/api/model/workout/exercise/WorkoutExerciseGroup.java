@@ -1,6 +1,6 @@
 package it.coachly.api.model.workout.exercise;
 
-import it.coachly.api.model.workout.WorkoutPlanDay;
+import it.coachly.api.model.workout.WorkoutPlan;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -29,8 +29,8 @@ public class WorkoutExerciseGroup {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "workout_plan_day_id", nullable = false)
-    private WorkoutPlanDay workoutPlanDay;
+    @JoinColumn(name = "workout_plan_id", nullable = false)
+    private WorkoutPlan workoutPlan;
 
     @Size(max = 30)
     @NotNull

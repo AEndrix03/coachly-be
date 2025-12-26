@@ -1,19 +1,23 @@
 package it.coachly.api.service.workout.data;
 
 
-import com.querydsl.core.annotations.QueryProjection;
-import com.querydsl.core.types.dsl.Expressions;
-import it.coachly.api.model.workout.QWorkoutPlan;
+import it.coachly.api.service.tag.data.TagDto;
+import it.coachly.api.service.workout.data.exercise.WorkoutExerciseDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class WorkoutDto {
 
     private UUID id;
@@ -31,37 +35,12 @@ public class WorkoutDto {
 
     private LocalDateTime lastUsed;
 
+    private List<TagDto> muscleTags;
+    private Integer sessionCount;
+    private Integer lastSessionDays;
+    private String type;
+    private List<WorkoutExerciseDto> workoutExercises;
+
     private Boolean active;
 
-    @QueryProjection
-    public WorkoutDto(UUID id, Map<String, Object> titleI18n, Map<String, Object> descriptionI18n, UUID coachId, String coachName, BigDecimal progress, Integer exercises, Integer durationMinutes, String goal, LocalDateTime lastUsed, Boolean active) {
-        this.id = id;
-        this.titleI18n = titleI18n;
-        this.descriptionI18n = descriptionI18n;
-        this.coachId = coachId;
-        this.coachName = coachName;
-        this.progress = progress;
-        this.exercises = exercises;
-        this.durationMinutes = durationMinutes;
-        this.goal = goal;
-        this.lastUsed = lastUsed;
-        this.active = active;
-    }
-
-    public static QWorkoutDto getProjection() {
-        QWorkoutPlan qWP = QWorkoutPlan.workoutPlan;
-        return new QWorkoutDto(
-                qWP.id,
-                qWP.titleI18n,
-                qWP.descriptionI18n,
-                qWP.id, //TODO
-                Expressions.asString("Leonardo"),
-                Expressions.asNumber(BigDecimal.valueOf(55.5)),
-                Expressions.asNumber(7),
-                Expressions.asNumber(45),
-                qWP.targetGoal,
-                Expressions.asDate(LocalDateTime.now()),
-                Expressions.asBoolean(true)
-        );
-    }
 }
