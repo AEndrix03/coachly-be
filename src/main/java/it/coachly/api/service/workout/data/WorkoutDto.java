@@ -36,7 +36,7 @@ public class WorkoutDto {
     private LocalDateTime lastUsed;
 
     private List<TagDto> muscleTags;
-    private Integer sessionCount;
+    private Integer sessionsCount;
     private Integer lastSessionDays;
     private String type;
     private List<WorkoutExerciseDto> workoutExercises;

@@ -69,7 +69,7 @@ public class WorkoutFinder {
                 .durationMinutes(50)
                 .goal(plan.getTargetGoal())
                 .lastUsed(LocalDateTime.now())
-                .sessionCount(0)
+                .sessionsCount(0)
                 .lastSessionDays(0)
                 .type(plan.getPlanType())
                 .muscleTags(muscleTags)
