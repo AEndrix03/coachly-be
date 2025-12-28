@@ -5,11 +5,10 @@ import it.coachly.api.service.workout.WorkoutService;
 import it.coachly.api.service.workout.data.WorkoutDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -25,6 +24,12 @@ public class WorkoutController {
         var user = this.userRetriever.retrieve();
         log.debug("Fetching all workouts for user: {}", user.getId());
         return this.workoutService.getAllUserWorkouts(user.getId());
+    }
+
+    @PostMapping()
+    public UUID patchWorkout(@RequestBody WorkoutDto workoutDto) {
+        log.debug("Patching workout with id: {}", workoutDto.getId());
+        return this.workoutService.patchWorkout(workoutDto);
     }
 
 }
