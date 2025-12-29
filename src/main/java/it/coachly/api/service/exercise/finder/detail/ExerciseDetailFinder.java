@@ -99,7 +99,7 @@ public class ExerciseDetailFinder {
     }
 
     private UUID[] parseUUIDs(String csvIds) {
-        if (StringUtils.hasText(csvIds)) return null;
+        if (!StringUtils.hasText(csvIds)) return null;
         return Arrays.stream(csvIds.split(","))
                 .map(String::trim)
                 .map(UUID::fromString)
