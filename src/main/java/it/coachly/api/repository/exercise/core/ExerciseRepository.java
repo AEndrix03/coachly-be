@@ -1,4 +1,4 @@
-package it.coachly.api.repository;
+package it.coachly.api.repository.exercise.core;
 
 import it.coachly.api.model.exercise.core.Exercise;
 import org.springframework.data.jpa.repository.JpaRepository;
