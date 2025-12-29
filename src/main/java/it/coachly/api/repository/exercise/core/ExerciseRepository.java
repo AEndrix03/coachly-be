@@ -83,15 +83,15 @@ public interface ExerciseRepository extends JpaRepository<Exercise, UUID>, Query
                 FROM exercises e
                 LEFT JOIN exercise_category_mapping ecm ON e.id = ecm.exercise_id
                 LEFT JOIN exercise_muscles em ON e.id = em.exercise_id
-                WHERE (:textFilter IS NULL OR :langFilter IS NULL 
+                WHERE (:textFilter IS NULL OR :langFilter IS NULL\s
                        OR LOWER(e.name_i18n->>:langFilter) LIKE LOWER(CONCAT('%', :textFilter, '%')))
                   AND (:difficultyLevel IS NULL OR e.difficulty_level = CAST(:difficultyLevel AS VARCHAR))
                   AND (:mechanicsType IS NULL OR e.mechanics_type = CAST(:mechanicsType AS VARCHAR))
                   AND (:forceType IS NULL OR e.force_type = CAST(:forceType AS VARCHAR))
                   AND (:isUnilateral IS NULL OR e.is_unilateral = :isUnilateral)
                   AND (:isBodyweight IS NULL OR e.is_bodyweight = :isBodyweight)
-                  AND (:categoryIds IS NULL OR ecm.category_id = ANY(CAST(:categoryIds AS uuid[])))
-                  AND (:muscleIds IS NULL OR em.muscle_id = ANY(CAST(:muscleIds AS uuid[])))
+                  AND (cardinality(:categoryIds) = 0 OR ecm.category_id = ANY(:categoryIds))
+                  AND (cardinality(:muscleIds) = 0 OR em.muscle_id = ANY(:muscleIds))
                 GROUP BY e.id
                 OFFSET :offset LIMIT :limit
             )
