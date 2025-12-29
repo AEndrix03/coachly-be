@@ -1,6 +1,6 @@
 package it.coachly.api.service.exercise;
 
-import it.coachly.api.repository.ExerciseRepository;
+import it.coachly.api.repository.exercise.core.ExerciseRepository;
 import it.coachly.api.service.exercise.data.ExerciseDto;
 import it.coachly.api.service.exercise.data.ExerciseFilterDto;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
