@@ -1,7 +1,7 @@
 package it.coachly.api.service.exercise.finder.detail;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import it.coachly.api.config.JsonMapper;
+import it.coachly.api.config.json.JsonMapper;
 import it.coachly.api.enums.DifficultyLevelEnum;
 import it.coachly.api.enums.exercise.ForceTypeEnum;
 import it.coachly.api.enums.exercise.MechanicsTypeEnum;

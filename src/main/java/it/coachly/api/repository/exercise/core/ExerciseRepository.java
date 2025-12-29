@@ -30,12 +30,12 @@ public interface ExerciseRepository extends JpaRepository<Exercise, UUID>, Query
                     'movementPattern', emp.movement_pattern,
                     'powerGenerationLevel', emp.power_generation_level
                 ) as movement_pattern,
-                jsonb_build_object(
-                    'id', es.exercise_id,
-                    'overallRiskLevel', es.overall_risk_level,
-                    'spotterRequired', es.spotter_required,
-                    'safetyNotesI18n', es.safety_notes_i18n
-                ) as safety,
+                COALESCE(json_agg(jsonb_build_object(
+                                'id', es.exercise_id,
+                                'overallRiskLevel', es.overall_risk_level,
+                                'spotterRequired', es.spotter_required,
+                                'safetyNotesI18n', es.safety_notes_i18n
+                            )) FILTER (WHERE es.exercise_id IS NOT NULL), '[]') as safety,
                 COALESCE(json_agg(DISTINCT jsonb_build_object(
                     'id', ei.id,
                     'instructionType', ei.instruction_type,
@@ -178,12 +178,12 @@ public interface ExerciseRepository extends JpaRepository<Exercise, UUID>, Query
                     'movementPattern', emp.movement_pattern,
                     'powerGenerationLevel', emp.power_generation_level
                 ) as movement_pattern,
-                jsonb_build_object(
+                COALESCE(json_agg(jsonb_build_object(
                     'id', es.exercise_id,
                     'overallRiskLevel', es.overall_risk_level,
                     'spotterRequired', es.spotter_required,
                     'safetyNotesI18n', es.safety_notes_i18n
-                ) as safety,
+                )) FILTER (WHERE es.exercise_id IS NOT NULL), '[]') as safety,
                 COALESCE(json_agg(DISTINCT jsonb_build_object(
                     'id', ei.id,
                     'instructionType', ei.instruction_type,
