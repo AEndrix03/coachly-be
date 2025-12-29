@@ -22,6 +22,7 @@ import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
 import it.coachly.api.service.tag.data.TagDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -98,7 +99,7 @@ public class ExerciseDetailFinder {
     }
 
     private UUID[] parseUUIDs(String csvIds) {
-        if (csvIds == null) return null;
+        if (StringUtils.hasText(csvIds)) return null;
         return Arrays.stream(csvIds.split(","))
                 .map(String::trim)
                 .map(UUID::fromString)
