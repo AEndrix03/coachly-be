@@ -20,6 +20,7 @@ import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyContr
 import it.coachly.api.service.exercise.data.component.safety.ExerciseSafetyDto;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
 import it.coachly.api.service.tag.data.TagDto;
+import it.coachly.api.util.enums.IEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -71,9 +72,9 @@ public class ExerciseDetailFinder {
                 }),
                 jsonMapper.parse(row[3], new TypeReference<Map<String, String>>() {
                 }),
-                DifficultyLevelEnum.valueOf((String) row[4]),
-                MechanicsTypeEnum.valueOf((String) row[5]),
-                row[6] != null ? ForceTypeEnum.valueOf((String) row[6]) : null,
+                IEnum.decode(DifficultyLevelEnum.class, (String) row[4]),
+                IEnum.decode(MechanicsTypeEnum.class, (String) row[5]),
+                row[6] != null ? IEnum.decode(ForceTypeEnum.class, (String) row[6]) : null,
                 (Boolean) row[7],
                 (Boolean) row[8]
         );
