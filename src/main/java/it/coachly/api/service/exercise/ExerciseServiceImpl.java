@@ -1,7 +1,8 @@
 package it.coachly.api.service.exercise;
 
-import it.coachly.api.repository.exercise.core.ExerciseRepository;
+import it.coachly.api.repository.ExerciseRepository;
 import it.coachly.api.service.exercise.data.ExerciseDto;
+import it.coachly.api.service.exercise.data.ExerciseFilterDto;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
 import it.coachly.api.service.exercise.data.save.ExerciseSaveDto;
 import it.coachly.api.service.exercise.finder.ExerciseFinder;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -35,6 +37,11 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public ExerciseDetailDto getDetailById(UUID id) {
         return this.exerciseDetailFinder.findDetailById(id);
+    }
+
+    @Override
+    public List<ExerciseDetailDto> getDetailByFilter(ExerciseFilterDto filter) {
+        return this.exerciseDetailFinder.findDetailsByFilter(filter);
     }
 
     @Override

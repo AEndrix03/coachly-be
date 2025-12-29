@@ -37,5 +37,4 @@ public class ExerciseFinder {
                 .where(qE.id.eq(id))
                 .fetchOne();
     }
-
 }

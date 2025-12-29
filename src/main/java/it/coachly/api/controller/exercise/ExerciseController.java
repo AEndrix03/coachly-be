@@ -2,6 +2,7 @@ package it.coachly.api.controller.exercise;
 
 import it.coachly.api.service.exercise.ExerciseService;
 import it.coachly.api.service.exercise.data.ExerciseDto;
+import it.coachly.api.service.exercise.data.ExerciseFilterDto;
 import it.coachly.api.service.exercise.data.detail.ExerciseDetailDto;
 import it.coachly.api.service.exercise.data.save.ExerciseSaveDto;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -27,6 +29,11 @@ public class ExerciseController {
     @GetMapping("/{id}")
     public ResponseEntity<ExerciseDetailDto> getDetailById(@PathVariable UUID id) {
         return ResponseEntity.ok(exerciseService.getDetailById(id));
+    }
+
+    @GetMapping("/filtered")
+    public ResponseEntity<List<ExerciseDetailDto>> getDetailById(@ModelAttribute ExerciseFilterDto filter) {
+        return ResponseEntity.ok(exerciseService.getDetailByFilter(filter));
     }
 
     @PatchMapping
