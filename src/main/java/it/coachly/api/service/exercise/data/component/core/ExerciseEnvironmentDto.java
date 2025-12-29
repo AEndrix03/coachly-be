@@ -3,12 +3,14 @@ package it.coachly.api.service.exercise.data.component.core;
 import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.model.exercise.core.QExerciseEnvironment;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
 @Data
 @SuperBuilder
+@NoArgsConstructor
 public class ExerciseEnvironmentDto {
 
     private UUID id;

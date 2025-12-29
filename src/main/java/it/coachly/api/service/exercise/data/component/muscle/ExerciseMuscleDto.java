@@ -6,10 +6,12 @@ import it.coachly.api.model.muscle.exercise.QExerciseMuscle;
 import it.coachly.api.service.muscle.data.ContractionTypeDto;
 import it.coachly.api.service.muscle.data.MuscleDto;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
+@NoArgsConstructor
 public class ExerciseMuscleDto {
 
     private MuscleDto muscle;

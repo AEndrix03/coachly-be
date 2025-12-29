@@ -8,6 +8,7 @@ import it.coachly.api.enums.exercise.VariationTypeEnum;
 import it.coachly.api.model.exercise.core.QExerciseVariation;
 import it.coachly.api.service.exercise.data.ExerciseDto;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @Data
 @SuperBuilder
+@NoArgsConstructor
 public class ExerciseVariantDto extends ExerciseDto {
 
     private VariationTypeEnum variationType;

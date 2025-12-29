@@ -4,6 +4,7 @@ import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.instruction.InstructionTypeEnum;
 import it.coachly.api.model.exercise.core.QExerciseInstruction;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
@@ -11,13 +12,14 @@ import java.util.UUID;
 
 @Data
 @SuperBuilder
+@NoArgsConstructor
 public class ExerciseInstructionDto {
 
-    private final UUID id;
-    private final InstructionTypeEnum instructionType;
-    private final Integer stepNumber;
-    private final Map<String, String> instructionTextI18n;
-    private final Boolean isCritical;
+    private UUID id;
+    private InstructionTypeEnum instructionType;
+    private Integer stepNumber;
+    private Map<String, String> instructionTextI18n;
+    private Boolean isCritical;
 
     @QueryProjection
     public ExerciseInstructionDto(UUID id, InstructionTypeEnum instructionType, Integer stepNumber, Map<String, String> instructionTextI18n, Boolean isCritical) {

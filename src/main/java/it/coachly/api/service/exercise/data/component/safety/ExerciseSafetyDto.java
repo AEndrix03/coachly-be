@@ -4,6 +4,7 @@ import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.enums.safety.RiskLevelEnum;
 import it.coachly.api.model.exercise.safety.QExerciseSafety;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @Data
 @SuperBuilder
+@NoArgsConstructor
 public class ExerciseSafetyDto {
 
     private UUID id;

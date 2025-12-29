@@ -4,12 +4,12 @@ import com.querydsl.core.annotations.QueryProjection;
 import it.coachly.api.model.equipment.equipment.QExerciseEquipment;
 import it.coachly.api.service.equipment.data.EquipmentDto;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Data
 @SuperBuilder
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class ExerciseEquipmentDto {
 
     private EquipmentDto equipment;
