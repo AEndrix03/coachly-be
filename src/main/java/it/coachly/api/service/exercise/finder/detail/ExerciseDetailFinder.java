@@ -5,7 +5,7 @@ import it.coachly.api.config.JsonMapper;
 import it.coachly.api.enums.DifficultyLevelEnum;
 import it.coachly.api.enums.exercise.ForceTypeEnum;
 import it.coachly.api.enums.exercise.MechanicsTypeEnum;
-import it.coachly.api.repository.ExerciseRepository;
+import it.coachly.api.repository.exercise.core.ExerciseRepository;
 import it.coachly.api.service.exercise.data.ExerciseDto;
 import it.coachly.api.service.exercise.data.ExerciseFilterDto;
 import it.coachly.api.service.exercise.data.component.category.ExerciseCategoryDto;
