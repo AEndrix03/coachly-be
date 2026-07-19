@@ -9,4 +9,6 @@ public interface WorkoutService {
     List<WorkoutDto> getAllUserWorkouts(java.util.UUID userId);
 
     UUID patchWorkout(WorkoutDto workoutDto);
+
+    void deleteWorkout(UUID userId, UUID workoutId);
 }

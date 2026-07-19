@@ -5,6 +5,7 @@ import it.coachly.api.service.workout.WorkoutService;
 import it.coachly.api.service.workout.data.WorkoutDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,13 @@ public class WorkoutController {
     public UUID patchWorkout(@RequestBody WorkoutDto workoutDto) {
         log.debug("Patching workout with id: {}", workoutDto.getId());
         return this.workoutService.patchWorkout(workoutDto);
+    }
+
+    @DeleteMapping("/{workoutId}")
+    public ResponseEntity<Void> deleteWorkout(@PathVariable UUID workoutId) {
+        var user = this.userRetriever.retrieve();
+        this.workoutService.deleteWorkout(user.getId(), workoutId);
+        return ResponseEntity.noContent().build();
     }
 
 }

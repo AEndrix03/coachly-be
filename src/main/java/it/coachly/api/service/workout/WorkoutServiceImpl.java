@@ -12,6 +12,9 @@ import it.coachly.api.service.workout.data.WorkoutDto;
 import it.coachly.api.service.workout.finder.WorkoutFinder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -65,5 +68,17 @@ public class WorkoutServiceImpl implements WorkoutService {
         }
 
         return this.workoutPlanRepository.save(plan).getId();
+    }
+
+    @Override
+    @Transactional
+    public void deleteWorkout(UUID userId, UUID workoutId) {
+        WorkoutPlan plan = this.workoutPlanRepository
+                .findByIdAndCreatedByUserId(workoutId, userId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Workout not found"
+                ));
+        this.workoutPlanRepository.delete(plan);
     }
 }
